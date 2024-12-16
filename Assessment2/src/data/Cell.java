@@ -18,11 +18,8 @@ public class Cell {
 		this.row = row;
 		this.col = col;
 
-		
-		
 		// Call the method that sets the cell content to EMPTY
-		clear();
-		 
+		clear(); 
 	}
 	
 
@@ -51,9 +48,6 @@ public class Cell {
 	public void clear() {
 		
 		// Set the value of content to Player.Empty
-		content = Player.Empty;
-
-		
-	}
-		
+		content = Player.Empty;	
+	}	
 }

@@ -17,7 +17,6 @@ public class Board {
 	 // initialise the cells array using ROWS and COLS constants
 		cells = new Cell[GameMain.ROWS][GameMain.COLS];
 
-		
 		for (int row = 0; row < GameMain.ROWS; ++row) {
 			for (int col = 0; col < GameMain.COLS; ++col) {
 				cells[row][col] = new Cell(row, col);
@@ -43,11 +42,7 @@ public class Board {
 			return true;
 		} else {
 			return false;
-		}
-		   
-		
-
-		
+		}	   	
 	}
 	
 	/** Return true if the current player "thePlayer" has won after making their move  */
@@ -56,28 +51,23 @@ public class Board {
 		if(cells[playerRow][0].content == thePlayer && cells[playerRow][1].content == thePlayer && cells[playerRow][2].content == thePlayer )
 			return true; 
 		
-		 // Check if the player has 3 in the playerCol.
+		 // Check if the player has 3-in-that-column
 		if(cells[0][playerCol].content == thePlayer && cells[1][playerCol].content == thePlayer && cells[2][playerCol].content == thePlayer )
 			return true;
-		
 		
 		 // 3-in-the-diagonal (top left to bottom right)
 		if( cells[0][0].content == thePlayer && cells[1][1].content == thePlayer && cells[2][2].content == thePlayer)
 			return true;
 		 
-		
 		// 3-in-the-diagonal (top right to bottom left)
 		if( cells[2][0].content == thePlayer && cells[1][1].content == thePlayer && cells[0][2].content == thePlayer)
 			return true;
-		
-
 		
 		//no winner, keep playing
 		return false;
 	}
 	
-	/**
-	 * Draws the grid (rows then columns) using constant sizes, then call on the
+	 /** Draws the grid (rows then columns) using constant sizes, then call on the
 	 * Cells to paint themselves into the grid
 	 */
 	public void paint(Graphics g) {
@@ -101,6 +91,4 @@ public class Board {
 			}
 		}
 	}
-	
-
 }
