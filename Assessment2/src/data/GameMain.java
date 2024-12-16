@@ -59,9 +59,10 @@ public class GameMain extends JPanel implements MouseListener{
 		
 		// create a new instance of the "Board" class
 		board = new Board();
-		
+
 		// call the method to initialise the game board
 		initGame();
+		
 		
 	}
 	
@@ -83,6 +84,10 @@ public class GameMain extends JPanel implements MouseListener{
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
+				// disable resize of the window
+				frame.setResizable(false);
+				
+				
 	         }
 		 });
 	}
@@ -99,12 +104,15 @@ public class GameMain extends JPanel implements MouseListener{
 			statusBar.setForeground(Color.BLACK);          
 			if (currentPlayer == Player.Cross) {   
 			
-				//TODO: use the status bar to display the message "X"'s Turn
+				//Use the status bar to display the message "X"'s Turn
+				statusBar.setText("\"X\"'s Turn");
+				
 
 				
 			} else {    
 				
-				//TODO: use the status bar to display the message "O"'s Turn
+				//Use the status bar to display the message "O"'s Turn
+				statusBar.setText("\"O\"'s Turn");
 
 				
 			}       
@@ -157,14 +165,19 @@ public class GameMain extends JPanel implements MouseListener{
 		
 				
 	
-		/** Event handler for the mouse click on the JPanel. If selected cell is valid and Empty then current player is added to cell content.
+		/** Event handler for the mouse press on the JPanel. If selected cell is valid and Empty then current player is added to cell content.
 		 *  UpdateGame is called which will call the methods to check for winner or Draw. if none then GameState remains playing.
 		 *  If win or Draw then call is made to method that resets the game board.  Finally a call is made to refresh the canvas so that new symbol appears*/
-	
-	public void mouseClicked(MouseEvent e) {  
+		
+	/* the event handler was changed from mouseClicked to mousePressed. 
+	 * 		With mouseClicked, the user had to click and release the mouse in the same spot. If there was any movement between click and release,
+	 * 		the mouse event would not get registered. This made the program unreliable. */
+	@Override
+	public void mousePressed(MouseEvent e) {  
 	    // get the coordinates of where the click event happened            
 		int mouseX = e.getX();             
-		int mouseY = e.getY();             
+		int mouseY = e.getY();
+		
 		// Get the row and column clicked             
 		int rowSelected = mouseY / CELL_SIZE;             
 		int colSelected = mouseX / CELL_SIZE;               			
@@ -188,12 +201,13 @@ public class GameMain extends JPanel implements MouseListener{
 		}   
 		
 		// redraw the graphics on the UI           
-        repaint();   
+  		repaint();
+		
 	}
 		
 	
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		//  Auto-generated, event not used
 		
 	}
